@@ -1,14 +1,14 @@
 module.exports = {
   daemon: true,
   run: [
-    // Edit this step to customize your app's launch command
     {
       method: "shell.run",
       params: {
-        venv: "env",                // Edit this to customize the venv folder path
-        env: { },                   // Edit this to customize environment variables (see documentation)
+        venv: "env",              
+        path: "app",
+        env: { },             
         message: [
-          "python app.py",    // Edit with your custom commands
+          "cd clearvoice && streamlit run streamlit_app.py", 
         ],
         on: [{
           // The regular expression pattern to monitor.

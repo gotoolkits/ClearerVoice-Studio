@@ -1,23 +1,33 @@
 module.exports = {
   run: [
-    // Delete this step if your project does not use torch
+    {
+      method: "shell.run",
+      params: {
+        message: [
+          "git clone https://github.com/modelscope/ClearerVoice-Studio.git app"
+        ],
+      }
+    },
     {
       method: "script.start",
       params: {
         uri: "torch.js",
+        path: "app",
         params: {
-          venv: "env",                // Edit this to customize the venv folder path
-          // xformers: true   // uncomment this line if your project requires xformers
+          venv: "env",          
         }
       }
     },
-    // Edit this step with your custom install commands
     {
       method: "shell.run",
       params: {
-        venv: "env",                // Edit this to customize the venv folder path
+        venv: "env",              
+        path: "app",
         message: [
-          "pip install -r requirements.txt"
+          "pip install -U pip",
+          "pip install -r requirements.txt",
+          "pip install streamlit", // use streamlit run UI app
+          "python demo.py" // download pretrained models to checkpoint folder
         ],
       }
     },
